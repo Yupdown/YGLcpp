@@ -19,8 +19,11 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectCamera.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
     <ClCompile Include="ObjectMesh.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,8 +51,11 @@
     <ClInclude Include="Scene.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectCamera.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
     <ClInclude Include="ObjectMesh.h">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,9 @@
     </Filter>
     <Filter Include="Precompiled Headers">
       <UniqueIdentifier>{2a8d45b6-68bc-47cd-bc1f-c5f8641ea655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{77f0b041-c249-4d44-b41a-1d151442b67f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
