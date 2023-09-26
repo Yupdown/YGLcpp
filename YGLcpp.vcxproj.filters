@@ -25,6 +25,12 @@
     <ClCompile Include="ObjectMesh.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectCameraOrthographic.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectCameraPerspective.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OBJ_Loader.h">
@@ -55,6 +61,12 @@
       <Filter>Source Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="ObjectMesh.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectCameraOrthographic.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectCameraPerspective.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
