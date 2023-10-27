@@ -23,8 +23,8 @@ namespace ygl
 		virtual ~Object();
 
 	public:
-		void UpdateMatrix();
-		void Redraw();
+		void ValidateMatrix();
+		void Redraw(bool forceValidate);
 
 		void AddChild(Object* obj);
 		bool RemoveChild(Object* obj);

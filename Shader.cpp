@@ -5,6 +5,8 @@ char* FileToBuffer(const char* file);
 
 namespace ygl
 {
+	GLuint Shader::globalUniformID = NULL;
+
 	Shader::Shader(const char* vertFile, const char* fragFile)
 	{
 		shaderVertexID = MakeShaders(vertFile, GL_VERTEX_SHADER);
@@ -52,6 +54,22 @@ namespace ygl
 	{
 		unsigned int modelLocation = glGetUniformLocation(programID, key);
 		glUniformMatrix4fv(modelLocation, 1, false, glm::value_ptr(value));
+	}
+
+	void Shader::CreateGlobalUBO()
+	{
+		glGenBuffers(1, &globalUniformID);
+		glBindBuffer(GL_UNIFORM_BUFFER, globalUniformID);
+		glBufferData(GL_UNIFORM_BUFFER, sizeof(GlobalUniformBlock), NULL, GL_STATIC_DRAW);
+		glBindBuffer(GL_UNIFORM_BUFFER, 0);
+		glBindBufferBase(GL_UNIFORM_BUFFER, 0, globalUniformID); // binding = 0
+	}
+
+	void Shader::SetGlobalUBO(const GlobalUniformBlock& v)
+	{
+		glBindBuffer(GL_UNIFORM_BUFFER, globalUniformID);
+		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(GlobalUniformBlock), &v);
+		glBindBuffer(GL_UNIFORM_BUFFER, 0);
 	}
 
 	GLuint Shader::MakeShaders(const char* fileName, GLenum shaderType)

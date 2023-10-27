@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "YGLFramework.h"
+#include "Shader.h"
 #include "Scene.h"
 
 namespace ygl
@@ -17,7 +18,6 @@ namespace ygl
 		glutInitWindowSize(640, 480);
 
 		glutCreateWindow(applicationTitle.c_str());
-		// glutFullScreen();
 
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
@@ -28,16 +28,29 @@ namespace ygl
 		else
 			std::cout << "GLEW Initialization" << std::endl;
 
+		Shader::CreateGlobalUBO();
+
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
+
 		glutIdleFunc(Update);
 		glutDisplayFunc(DrawScene);
 		glutReshapeFunc(Reshape);
+	}
 
-		YGLFramework::currentScene = new Scene();
+	void YGLFramework::BeginUpdateLoop()
+	{
+		glutMainLoop();
 	}
 
 	void YGLFramework::SetUpdateHandler(void (*callback)())
 	{
 		updateCallback = callback;
+	}
+
+	void YGLFramework::SwitchScene(Scene* scene)
+	{
+		currentScene = scene;
 	}
 
 	void YGLFramework::Update()
@@ -66,8 +79,7 @@ namespace ygl
 
 	void YGLFramework::DrawScene()
 	{
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 		if (currentScene != nullptr)
 			currentScene->Redraw();
@@ -77,6 +89,6 @@ namespace ygl
 
 	void YGLFramework::Reshape(int x, int y)
 	{
-
+		glViewport(0, 0, x, y);
 	}
 }

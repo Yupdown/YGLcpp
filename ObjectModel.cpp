@@ -5,21 +5,22 @@
 
 namespace ygl
 {
-	ObjectModel::ObjectModel() : Object()
+	ObjectModel::ObjectModel(Mesh* mesh, Shader* shader)
+	{
+		modelMesh = mesh;
+		modelShader = shader;
+	}
+
+	ObjectModel::~ObjectModel()
 	{
 		modelMesh = nullptr;
 		modelShader = nullptr;
 	}
 
-	ObjectModel::~ObjectModel()
-	{
-
-	}
-
 	void ObjectModel::OnRedraw()
 	{
 		modelShader->UseProgram();
-		modelShader->SetUniformMatrix4x4("world_Transform", matrixTRSWorld);
+		modelShader->SetUniformMatrix4x4("model_Transform", matrixTRSWorld);
 		modelMesh->Draw(GL_TRIANGLES);
 	}
 }

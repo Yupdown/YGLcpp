@@ -4,8 +4,20 @@
 
 namespace ygl
 {
+	struct GlobalUniformBlock
+	{
+		Matrix4x4 view_Transform;
+		Matrix4x4 proj_Transform;
+	};
+
 	class Shader
 	{
+	private:
+		static GLuint globalUniformID;
+	public:
+		static void CreateGlobalUBO();
+		static void SetGlobalUBO(const GlobalUniformBlock& v);
+
 	private:
 		const string PATH_PREFIX = "resource/shader/";
 

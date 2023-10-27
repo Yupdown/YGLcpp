@@ -13,7 +13,7 @@ namespace ygl
 		Shader*	modelShader;
 
 	public:
-		ObjectModel();
+		ObjectModel(Mesh* mesh, Shader* shader);
 		virtual ~ObjectModel() override;
 
 	protected:

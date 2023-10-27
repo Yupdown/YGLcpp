@@ -1,12 +1,15 @@
 #include "pch.h"
+#include "Shader.h"
 #include "ObjectCamera.h"
 
 namespace ygl
 {
     ObjectCamera::ObjectCamera()
     {
-        matrixView = Matrix4x4(1.0f);
-        matrixProj = Matrix4x4(1.0f);
+        viewportX = 0;
+        viewportY = 0;
+        viewportWidth = 0;
+        viewportHeight = 0;
     }
 
     ObjectCamera::~ObjectCamera()
@@ -14,22 +17,30 @@ namespace ygl
 
     }
 
-    void ObjectCamera::UpdateViewMatrix()
+    Matrix4x4 ObjectCamera::ViewMatrix()
     {
-
+        return glm::inverse(matrixTRSLocal);
     }
 
-    void ObjectCamera::UpdateProjMatrix()
+    Matrix4x4 ObjectCamera::ProjMatrix()
     {
-
+        return Matrix4x4();
     }
 
-    void ObjectCamera::UpdateUniformMatrix(int shaderProgramID)
+    void ObjectCamera::BeginDraw()
     {
-        unsigned int modelLocation;
-        modelLocation = glGetUniformLocation(shaderProgramID, "ygl_mView");
-        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(matrixView));
-        modelLocation = glGetUniformLocation(shaderProgramID, "ygl_mProj");
-        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(matrixProj));
+        GLint vp[4];
+        glGetIntegerv(GL_VIEWPORT, vp);
+        viewportX = vp[0];
+        viewportY = vp[1];
+        viewportWidth = vp[2];
+        viewportHeight = vp[3];
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        GlobalUniformBlock block;
+        block.view_Transform = ViewMatrix();
+        block.proj_Transform = ProjMatrix();
+        Shader::SetGlobalUBO(block);
     }
 }

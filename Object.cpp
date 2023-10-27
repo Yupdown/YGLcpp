@@ -22,7 +22,7 @@ namespace ygl
 
 	}
 
-	void Object::UpdateMatrix()
+	void Object::ValidateMatrix()
 	{
 		Matrix4x4 matrixT = glm::translate(Matrix4x4(1.0f), position);
 		Matrix4x4 matrixR = glm::mat4_cast(rotation);
@@ -30,25 +30,28 @@ namespace ygl
 		matrixTRSLocal = matrixT * matrixR * matrixS;
 		
 		if (parentObject != nullptr)
-			matrixTRSWorld = matrixTRSLocal * parentObject->matrixTRSWorld;
+			matrixTRSWorld = parentObject->matrixTRSWorld * matrixTRSLocal;
 		else
 			matrixTRSWorld = matrixTRSLocal;
 
 		matrixDirty = false;
 	}
 
-	void Object::Redraw()
+	void Object::Redraw(bool forceValidate)
 	{
-		if (matrixDirty)
-			UpdateMatrix();
+		bool validate = matrixDirty || forceValidate;
+
+		if (validate)
+			ValidateMatrix();
 		OnRedraw();
 
 		for (Object* childObject : childObjects)
-			childObject->Redraw();
+			childObject->Redraw(validate);
 	}
 
 	void Object::AddChild(Object* obj)
 	{
+		obj->parentObject = this;
 		childObjects.push_back(obj);
 	}
 

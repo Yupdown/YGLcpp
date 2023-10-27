@@ -14,7 +14,9 @@ namespace ygl
 
 	public:
 		static void Initialize(int argc, char** argv);
+		static void BeginUpdateLoop();
 		static void SetUpdateHandler(void (*callback)());
+		static void SwitchScene(Scene* scene);
 
 	private:
 		static void Update();

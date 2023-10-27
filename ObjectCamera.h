@@ -6,17 +6,19 @@ namespace ygl
 {
 	class ObjectCamera : public Object
 	{
-	private:
-		Matrix4x4 matrixView;
-		Matrix4x4 matrixProj;
+	protected:
+		GLint viewportX;
+		GLint viewportY;
+		GLsizei viewportWidth;
+		GLsizei viewportHeight;
 
 	public:
 		ObjectCamera();
 		~ObjectCamera() override;
 
 	public:
-		virtual void UpdateViewMatrix();
-		virtual void UpdateProjMatrix();
-		void UpdateUniformMatrix(int shaderProgramID);
+		virtual Matrix4x4 ViewMatrix();
+		virtual Matrix4x4 ProjMatrix();
+		void BeginDraw();
 	};
 }

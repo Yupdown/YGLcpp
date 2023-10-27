@@ -24,7 +24,6 @@
     <ClCompile Include="ObjectCamera.cpp" />
     <ClCompile Include="ObjectCameraOrthographic.cpp" />
     <ClCompile Include="ObjectCameraPerspective.cpp" />
-    <ClCompile Include="ObjectMesh.cpp" />
     <ClCompile Include="ObjectModel.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -39,7 +38,6 @@
     <ClInclude Include="ObjectCamera.h" />
     <ClInclude Include="ObjectCameraOrthographic.h" />
     <ClInclude Include="ObjectCameraPerspective.h" />
-    <ClInclude Include="ObjectMesh.h" />
     <ClInclude Include="ObjectModel.h" />
     <ClInclude Include="OBJ_Loader.h" />
     <ClInclude Include="pch.h" />
@@ -107,8 +105,12 @@
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)Library</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)Library;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
