@@ -27,6 +27,7 @@ namespace ygl
 		void Redraw();
 
 		void AddChild(Object* obj);
+		bool RemoveChild(Object* obj);
 		void RemoveFromParent();
 		
 	public:

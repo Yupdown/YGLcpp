@@ -24,9 +24,6 @@ namespace ygl
 
 	void Object::UpdateMatrix()
 	{
-		if (!matrixDirty)
-			return;
-
 		Matrix4x4 matrixT = glm::translate(Matrix4x4(1.0f), position);
 		Matrix4x4 matrixR = glm::mat4_cast(rotation);
 		Matrix4x4 matrixS = glm::scale(Matrix4x4(1.0f), scale);
@@ -36,11 +33,14 @@ namespace ygl
 			matrixTRSWorld = matrixTRSLocal * parentObject->matrixTRSWorld;
 		else
 			matrixTRSWorld = matrixTRSLocal;
+
+		matrixDirty = false;
 	}
 
 	void Object::Redraw()
 	{
-		UpdateMatrix();
+		if (matrixDirty)
+			UpdateMatrix();
 		OnRedraw();
 
 		for (Object* childObject : childObjects)
@@ -49,12 +49,23 @@ namespace ygl
 
 	void Object::AddChild(Object* obj)
 	{
+		childObjects.push_back(obj);
+	}
 
+	bool Object::RemoveChild(Object* obj)
+	{
+		auto iter = std::find(childObjects.begin(), childObjects.end(), obj);
+		if (iter == childObjects.end())
+			return false;
+		childObjects.erase(iter);
+		return true;
 	}
 
 	void Object::RemoveFromParent()
 	{
-
+		if (parentObject == nullptr)
+			return;
+		parentObject->RemoveChild(this);
 	}
 
 	Vector3 Object::GetPosition() const

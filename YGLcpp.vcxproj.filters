@@ -31,6 +31,9 @@
     <ClCompile Include="ObjectCameraPerspective.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectModel.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OBJ_Loader.h">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="ObjectCameraPerspective.h">
       <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectModel.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

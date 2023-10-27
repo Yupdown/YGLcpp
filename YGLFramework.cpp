@@ -33,8 +33,6 @@ namespace ygl
 		glutReshapeFunc(Reshape);
 
 		YGLFramework::currentScene = new Scene();
-
-		glutMainLoop();
 	}
 
 	void YGLFramework::SetUpdateHandler(void (*callback)())
@@ -46,20 +44,19 @@ namespace ygl
 	{
 #ifdef _DEBUG
 		constexpr int REFRESH_RATE = 20;
-		static int frameCounts[REFRESH_RATE];
-		static clock_t lc;
-		clock_t c = clock();
-		int p = c * REFRESH_RATE / 1000 % REFRESH_RATE;
-		if (lc * REFRESH_RATE / 1000 != c * REFRESH_RATE / 1000)
+		static int frameCount = 0;
+		static std::chrono::steady_clock timer;
+		static std::chrono::steady_clock::time_point lc;
+		std::chrono::steady_clock::time_point c = timer.now();
+		double delta = std::chrono::duration_cast<std::chrono::duration<double>>(c - lc).count();
+		if (delta * REFRESH_RATE > 1.0)
 		{
-			int fps = 0;
-			for (int i = 0; i < REFRESH_RATE; ++i)
-				fps += frameCounts[i];
+			int fps = (int)round(1.0 / delta * frameCount);
 			glutSetWindowTitle((applicationTitle + std::format(" @ {} FPS", fps)).c_str());
-			frameCounts[p] = 0;
+			frameCount = 0;
+			lc = c;
 		}
-		frameCounts[p] += 1;
-		lc = c;
+		frameCount += 1;
 #endif
 
 		if (YGLFramework::updateCallback != nullptr)
