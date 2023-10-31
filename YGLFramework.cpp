@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "YGLFramework.h"
-#include "Shader.h"
-#include "Scene.h"
 
 namespace ygl
 {
@@ -36,6 +34,14 @@ namespace ygl
 		glutIdleFunc(Update);
 		glutDisplayFunc(DrawScene);
 		glutReshapeFunc(Reshape);
+
+		glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+		glutKeyboardFunc(Input::ProcessKeyDown);
+		glutKeyboardUpFunc(Input::ProcessKeyUp);
+		glutSpecialFunc(Input::ProcessSpecialKeyDown);
+		glutSpecialUpFunc(Input::ProcessSpecialKeyUp);
+		glutMouseFunc(Input::ProcessMouse);
+		glutMotionFunc(Input::ProcessMouseMove);
 	}
 
 	void YGLFramework::BeginUpdateLoop()
@@ -74,6 +80,8 @@ namespace ygl
 
 		if (YGLFramework::updateCallback != nullptr)
 			YGLFramework::updateCallback();
+		Input::Poll();
+
 		glutPostRedisplay();
 	}
 

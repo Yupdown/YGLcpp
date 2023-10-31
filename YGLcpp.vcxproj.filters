@@ -31,6 +31,9 @@
     <ClCompile Include="ObjectModel.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OBJ_Loader.h">
@@ -67,6 +70,9 @@
       <Filter>Source Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="ObjectModel.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

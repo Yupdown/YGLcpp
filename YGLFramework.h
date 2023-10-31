@@ -1,10 +1,18 @@
 #pragma once
-#include <string>
+#include "pch.h"
+#include "Input.h"
+#include "Mesh.h"
+#include "Object.h"
+#include "ObjectModel.h"
+#include "Scene.h"
+#include "Shader.h"
+#include "ObjectCamera.h"
+#include "ObjectCameraOrthographic.h"
+#include "ObjectCameraPerspective.h"
+#include "YGLMath.hpp"
 
 namespace ygl
 {
-	class Scene;
-
 	class YGLFramework
 	{
 	private:
