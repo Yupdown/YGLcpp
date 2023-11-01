@@ -16,20 +16,6 @@ namespace ygl
 
 	}
 
-	void Scene::AddObject(Object* obj)
-	{
-		objects.push_back(obj);
-	}
-
-	bool Scene::RemoveObject(Object* obj)
-	{
-		auto iter = std::find(objects.begin(), objects.end(), obj);
-		if (iter == objects.end())
-			return false;
-		objects.erase(iter);
-		return true;
-	}
-
 	ObjectCamera* Scene::GetCamera() const
 	{
 		return camera;
@@ -38,15 +24,15 @@ namespace ygl
 	void Scene::SetCamera(ObjectCamera* camera)
 	{
 		if (this->camera != nullptr)
-			RemoveObject(this->camera);
+			RemoveChild(this->camera);
 		this->camera = camera;
-		AddObject(camera);
+		AddChild(camera);
 	}
 
 	void Scene::Redraw()
 	{
 		camera->BeginDraw();
-		for (Object* obj : objects)
-			obj->Redraw(false);
+		for (Object* sceneObject : children)
+			sceneObject->Redraw(nullptr, false);
 	}
 }

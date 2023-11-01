@@ -13,8 +13,6 @@ namespace ygl
 		matrixTRSWorld = Matrix4x4(1.0f);
 
 		matrixDirty = true;
-
-		parentObject = nullptr;
 	}
 
 	Object::~Object()
@@ -22,53 +20,39 @@ namespace ygl
 
 	}
 
-	void Object::ValidateMatrix()
+	void Object::ValidateMatrix(const Object* parentPtr)
 	{
 		Matrix4x4 matrixT = glm::translate(Matrix4x4(1.0f), position);
 		Matrix4x4 matrixR = glm::mat4_cast(rotation);
 		Matrix4x4 matrixS = glm::scale(Matrix4x4(1.0f), scale);
 		matrixTRSLocal = matrixT * matrixR * matrixS;
 		
-		if (parentObject != nullptr)
-			matrixTRSWorld = parentObject->matrixTRSWorld * matrixTRSLocal;
+		if (parentPtr != nullptr)
+			matrixTRSWorld = parentPtr->matrixTRSWorld * matrixTRSLocal;
 		else
 			matrixTRSWorld = matrixTRSLocal;
 
 		matrixDirty = false;
 	}
 
-	void Object::Redraw(bool forceValidate)
+	void Object::Redraw(const Object* parentPtr, bool forceValidate)
 	{
 		bool validate = matrixDirty || forceValidate;
 
 		if (validate)
-			ValidateMatrix();
+			ValidateMatrix(parentPtr);
 		OnRedraw();
 
-		for (Object* childObject : childObjects)
-			childObject->Redraw(validate);
-	}
-
-	void Object::AddChild(Object* obj)
-	{
-		obj->parentObject = this;
-		childObjects.push_back(obj);
-	}
-
-	bool Object::RemoveChild(Object* obj)
-	{
-		auto iter = std::find(childObjects.begin(), childObjects.end(), obj);
-		if (iter == childObjects.end())
-			return false;
-		childObjects.erase(iter);
-		return true;
+		for (Object* childObject : children)
+			childObject->Redraw(this, validate);
 	}
 
 	void Object::RemoveFromParent()
+
 	{
-		if (parentObject == nullptr)
+		if (parent == nullptr)
 			return;
-		parentObject->RemoveChild(this);
+		parent->RemoveChild(this);
 	}
 
 	Vector3 Object::GetPosition() const
@@ -92,6 +76,30 @@ namespace ygl
 		matrixDirty = true;
 	}
 
+	void Object::SetPositionX(float s)
+	{
+		position.x = s;
+		matrixDirty = true;
+	}
+
+	void Object::SetPositionY(float s)
+	{
+		position.y = s;
+		matrixDirty = true;
+	}
+
+	void Object::SetPositionZ(float s)
+	{
+		position.z = s;
+		matrixDirty = true;
+	}
+
+	void Object::Translate(const Vector3& v)
+	{
+		position += v;
+		matrixDirty = true;
+	}
+
 	void Object::SetRotation(const Quaternion& v)
 	{
 		rotation = v;
@@ -102,6 +110,11 @@ namespace ygl
 	{
 		scale = v;
 		matrixDirty = true;
+	}
+
+	void Object::SetScale(float s)
+	{
+		scale = glm::one<Vector3>() * s;
 	}
 
 	void Object::OnRedraw()

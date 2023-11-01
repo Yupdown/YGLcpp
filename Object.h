@@ -1,9 +1,10 @@
 #pragma once
 #include "pch.h"
+#include "Node.h"
 
 namespace ygl
 {
-	class Object
+	class Object : public Node<Object>
 	{
 	protected:
 		Vector3		position;
@@ -15,19 +16,14 @@ namespace ygl
 
 		bool matrixDirty;
 
-		Object* parentObject;
-		std::vector<Object*> childObjects;
-
 	public:
 		Object();
 		virtual ~Object();
 
 	public:
-		void ValidateMatrix();
-		void Redraw(bool forceValidate);
+		void ValidateMatrix(const Object* parentPtr);
+		void Redraw(const Object* parentPtr, bool forceValidate);
 
-		void AddChild(Object* obj);
-		bool RemoveChild(Object* obj);
 		void RemoveFromParent();
 		
 	public:
@@ -37,8 +33,13 @@ namespace ygl
 
 	public:
 		void SetPosition(const Vector3& v);
+		void SetPositionX(float s);
+		void SetPositionY(float s);
+		void SetPositionZ(float s);
+		void Translate(const Vector3& v);
 		void SetRotation(const Quaternion& v);
 		void SetScale(const Vector3& v);
+		void SetScale(float s);
 
 	protected:
 		virtual void OnRedraw();

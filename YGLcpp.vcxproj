@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectCamera.cpp" />
     <ClCompile Include="ObjectCameraOrthographic.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectCamera.h" />
     <ClInclude Include="ObjectCameraOrthographic.h" />

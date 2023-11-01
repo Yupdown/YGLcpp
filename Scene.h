@@ -1,23 +1,20 @@
 #pragma once
 #include "pch.h"
+#include "Node.h"
 
 namespace ygl
 {
 	class Object;
 	class ObjectCamera;
 
-	class Scene
+	class Scene : public Node<Object>
 	{
 	private:
 		ObjectCamera* camera;
-		std::vector<Object*> objects;
 
 	public:
 		Scene(ObjectCamera* camera);
 		~Scene();
-
-		void AddObject(Object* obj);
-		bool RemoveObject(Object* obj);
 
 		ObjectCamera* GetCamera() const;
 		void SetCamera(ObjectCamera* camera);

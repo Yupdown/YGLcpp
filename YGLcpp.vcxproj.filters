@@ -34,6 +34,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OBJ_Loader.h">
@@ -73,6 +76,9 @@
       <Filter>Source Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
