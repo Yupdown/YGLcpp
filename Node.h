@@ -7,19 +7,12 @@ namespace ygl
 	class Node
 	{
 	protected:
-		Node* parent;
+		Node<ChildNode>* parent;
 		std::vector<ChildNode*> children;
 
 	public:
-		Node()
-		{
-			parent = nullptr;
-		}
-
-		virtual ~Node()
-		{
-
-		}
+		Node() : parent(nullptr) {}
+		virtual ~Node() {}
 
 	public:
 		void AddChild(ChildNode* node)
@@ -33,6 +26,7 @@ namespace ygl
 			auto iter = std::find(children.begin(), children.end(), node);
 			if (iter == children.end())
 				return false;
+			(*iter)->parent = nullptr;
 			children.erase(iter);
 			return true;
 		}

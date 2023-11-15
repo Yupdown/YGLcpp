@@ -17,6 +17,26 @@ namespace ygl
 		modelShader = nullptr;
 	}
 
+	Mesh* ObjectModel::GetMesh() const
+	{
+		return modelMesh;
+	}
+
+	Shader* ObjectModel::GetShader() const
+	{
+		return modelShader;
+	}
+
+	void ObjectModel::SetMesh(Mesh* mesh)
+	{
+		modelMesh = mesh;
+	}
+
+	void ObjectModel::SetShader(Shader* shader)
+	{
+		modelShader = shader;
+	}
+
 	void ObjectModel::OnRedraw()
 	{
 		modelShader->UseProgram();

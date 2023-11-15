@@ -87,8 +87,6 @@ namespace ygl
 
 	void YGLFramework::DrawScene()
 	{
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-
 		if (currentScene != nullptr)
 			currentScene->Redraw();
 

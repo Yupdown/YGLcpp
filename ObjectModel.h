@@ -16,6 +16,14 @@ namespace ygl
 		ObjectModel(Mesh* mesh, Shader* shader);
 		virtual ~ObjectModel() override;
 
+	public:
+		Mesh* GetMesh() const;
+		Shader* GetShader() const;
+
+	public:
+		void SetMesh(Mesh* mesh);
+		void SetShader(Shader* shader);
+
 	protected:
 		virtual void OnRedraw() override;
 	};
