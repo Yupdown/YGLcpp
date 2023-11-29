@@ -6,6 +6,7 @@
 #include "ObjectModel.h"
 #include "Scene.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "ObjectCamera.h"
 #include "ObjectCameraOrthographic.h"
 #include "ObjectCameraPerspective.h"

@@ -115,6 +115,7 @@ namespace ygl
 	void Object::SetScale(float s)
 	{
 		scale = glm::one<Vector3>() * s;
+		matrixDirty = true;
 	}
 
 	void Object::OnRedraw()

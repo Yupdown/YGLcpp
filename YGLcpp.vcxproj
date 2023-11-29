@@ -32,6 +32,7 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="YGLFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="YGLFramework.h" />
     <ClInclude Include="YGLMath.hpp" />
   </ItemGroup>

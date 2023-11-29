@@ -37,6 +37,9 @@
     <ClCompile Include="Node.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OBJ_Loader.h">
@@ -79,6 +82,12 @@
       <Filter>Source Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files\External Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
