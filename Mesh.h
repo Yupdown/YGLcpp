@@ -29,7 +29,7 @@ namespace ygl
 
 		void LoadFromFile(const char* fileName);
 		void AppendVertex(const Vector3& v);
-		void AppendColor(const Vector3& v);
+		void AppendColor(const Vector4& v);
 		void AppendNormal(const Vector3& v);
 		void AppendUV(const Vector2& v);
 		void AppendIndex(GLuint v);

@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "Object.h"
 #include "ObjectModel.h"
+#include "ObjectModelBlend.h"
 #include "Scene.h"
 #include "Shader.h"
 #include "Texture.h"

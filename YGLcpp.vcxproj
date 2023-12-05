@@ -27,6 +27,7 @@
     <ClCompile Include="ObjectCameraOrthographic.cpp" />
     <ClCompile Include="ObjectCameraPerspective.cpp" />
     <ClCompile Include="ObjectModel.cpp" />
+    <ClCompile Include="ObjectModelBlend.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -44,6 +45,7 @@
     <ClInclude Include="ObjectCameraOrthographic.h" />
     <ClInclude Include="ObjectCameraPerspective.h" />
     <ClInclude Include="ObjectModel.h" />
+    <ClInclude Include="ObjectModelBlend.h" />
     <ClInclude Include="OBJ_Loader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />

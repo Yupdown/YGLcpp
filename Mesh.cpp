@@ -43,7 +43,7 @@ namespace ygl
 			ygl::Vector2 up = Vector2(u.X, u.Y);
 
 			AppendVertex(pp);
-			AppendColor(Vector3(1.0f, 1.0f, 1.0f));
+			AppendColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 			AppendNormal(np);
 			AppendUV(up);
 		}
@@ -64,11 +64,12 @@ namespace ygl
 		vertexDirty = true;
 	}
 
-	void Mesh::AppendColor(const Vector3& v)
+	void Mesh::AppendColor(const Vector4& v)
 	{
 		colors.push_back(v.x);
 		colors.push_back(v.y);
 		colors.push_back(v.z);
+		colors.push_back(v.w);
 
 		vertexDirty = true;
 	}
@@ -119,7 +120,7 @@ namespace ygl
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * colors.size(), colors.data(), GL_STATIC_DRAW);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 		glEnableVertexAttribArray(1);
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo[2]);
