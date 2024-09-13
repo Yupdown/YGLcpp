@@ -1,18 +1,16 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 
-#pragma comment(lib, "OpenGL32.Lib")
-#pragma comment(lib, "glew32.lib")
-#pragma warning(disable: 4711 4710 4100)	
-#pragma comment(lib, "freeglut.lib")
+#define GLFW_INCLUDE_NONE
+#define GLFW_EXPOSE_NATIVE_WIN32
 
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-#include <glm/gtx/string_cast.hpp> 
-#include <glm/gtc/type_ptr.hpp> 
 #include <GL/glew.h>
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
+#include <glfw/glfw3.h>
+#include <glfw/glfw3native.h>
 
 #include <thread>
 #include <iostream>
